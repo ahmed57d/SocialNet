@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialNet", "SocialNet\SocialNet.csproj", "{AEE61105-9B41-453F-AAE6-F4D3B7B7B367}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AEE61105-9B41-453F-AAE6-F4D3B7B7B367}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEE61105-9B41-453F-AAE6-F4D3B7B7B367}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEE61105-9B41-453F-AAE6-F4D3B7B7B367}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEE61105-9B41-453F-AAE6-F4D3B7B7B367}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8943DEDC-D916-4D1F-BD32-397C180EF739}
+	EndGlobalSection
+EndGlobal
