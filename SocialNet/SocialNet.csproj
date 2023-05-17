@@ -13,8 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Domain\Interface\" />
-    <Folder Include="Persistence\Service\" />
+    <Folder Include="Service\" />
   </ItemGroup>
 
 </Project>

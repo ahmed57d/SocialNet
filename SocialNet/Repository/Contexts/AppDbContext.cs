@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using SocialNet.Domain.Models;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
-namespace SocialNet.Domain.Contexts
+namespace SocialNet.Repository.Contexts
 {
     public class AppDbContext : IdentityDbContext
     {

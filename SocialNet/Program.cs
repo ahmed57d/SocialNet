@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using SocialNet.Domain.Contexts;
+using SocialNet.Repository.Contexts;
 
 var builder = WebApplication.CreateBuilder(args);
 
