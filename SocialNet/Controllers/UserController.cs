@@ -1,12 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SocialNet.Domain.Models;
 using SocialNet.Service.IService;
+using System.Threading.Tasks;
 
 namespace SocialNet.Controllers
 {
-    public class UserController : Controller
+    [ApiController]
+    [Route("api/users")]
+    public class UserController : ControllerBase
     {
         private readonly IUserService userService;
+
         public UserController(IUserService userService)
         {
             this.userService = userService;
@@ -18,26 +22,38 @@ namespace SocialNet.Controllers
             var users = await userService.GetUsers();
             return Ok(users);
         }
-        [HttpGet("{Id:string}", Name = "Id")]
+
+        [HttpGet("{Id}", Name = "UserId")]
         public async Task<IActionResult> GetUser(string Id)
         {
             var user = await userService.GetUser(Id);
+            if (user == null)
+                return NotFound();
             return Ok(user);
         }
+
         [HttpPost]
-        void InsertUser(User user)
+        public IActionResult InsertUser( User user)
         {
             userService.InsertUser(user);
+            return CreatedAtRoute("UserId", new { Id = user.Id }, user);
         }
-        [HttpPut]
-        void UpdateUser(User user)
+
+        [HttpPut("{Id}")]
+        public IActionResult UpdateUser(string Id, [FromBody] User user)
         {
+            if (Id != user.Id)
+                return BadRequest();
+
             userService.UpdateUser(user);
+            return NoContent();
         }
-        [HttpDelete]
-        void DeleteUser(string Id)
+
+        [HttpDelete("{Id}")]
+        public IActionResult DeleteUser(string Id)
         {
             userService.DeleteUser(Id);
+            return NoContent();
         }
     }
 }

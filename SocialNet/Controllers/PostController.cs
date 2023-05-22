@@ -1,38 +1,46 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SocialNet.Domain.Models;
-using SocialNet.Repository;
 using SocialNet.Service.IService;
 
 namespace SocialNet.Controllers
 {
-    public class PostController : Controller
+    [ApiController]
+    [Route("api/posts")]
+    public class PostController : ControllerBase
     {
         private readonly IPostService postService;
+
         public PostController(IPostService postService)
         {
             this.postService = postService;
         }
+
         [HttpGet]
-        public IEnumerable<Post> GetAllUsersPosts()
+        public IActionResult GetAllUsersPosts()
         {
             var posts = postService.GetAllUsersPosts();
-            return (IEnumerable<Post>)Ok(posts);
+            return Ok(posts);
         }
-        [HttpGet("{Id:string}", Name = "Id")]
-        public IEnumerable<Post> GetUserPosts(string Id)
+
+        [HttpGet("{Id}", Name = "PostId")]
+        public IActionResult GetUserPosts(string Id)
         {
             var post = postService.GetUserPosts(Id);
-            return ((IEnumerable<Post>)Ok(post));
+            return Ok(post);
         }
+
         [HttpPost]
-        public void AddPost(Post post)
+        public IActionResult AddPost([FromBody] Post post)
         {
             postService.AddPost(post);
+            return CreatedAtRoute("PostId", new { Id = post.Id }, post);
         }
+
         [HttpPut]
-        public void UpdatePost(Post post)
+        public IActionResult UpdatePost([FromBody] Post post)
         {
             postService.UpdatePost(post);
+            return NoContent();
         }
         [HttpDelete]
         public void DeletePost(Post post)

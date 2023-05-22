@@ -33,9 +33,9 @@ namespace SocialNet.Service
         {
             userRepository.UpdateUser(user);
         }
-        public void DeleteUser(string Id)
+        public void DeleteUser(string id)
         {
-            userRepository.DeleteUser(Id);
+            userRepository.DeleteUser(id);
         }
     }
 }

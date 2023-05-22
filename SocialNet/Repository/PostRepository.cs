@@ -26,6 +26,7 @@ namespace SocialNet.Repository
 
         public void AddPost(Post post)
         {
+            
             context.Posts?.Add(post);
             context.SaveChanges();
         }

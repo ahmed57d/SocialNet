@@ -222,11 +222,8 @@ namespace SocialNet.Migrations
 
             modelBuilder.Entity("SocialNet.Domain.Models.Comment", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Content")
                         .IsRequired()
@@ -235,18 +232,13 @@ namespace SocialNet.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("PostId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PostId1")
+                    b.Property<string>("PostId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PostId1");
+                    b.HasIndex("PostId");
 
                     b.ToTable("Comments");
                 });
@@ -254,6 +246,7 @@ namespace SocialNet.Migrations
             modelBuilder.Entity("SocialNet.Domain.Models.Post", b =>
                 {
                     b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Content")
@@ -312,8 +305,8 @@ namespace SocialNet.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<int>("IsActive")
-                        .HasColumnType("int");
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -406,9 +399,13 @@ namespace SocialNet.Migrations
 
             modelBuilder.Entity("SocialNet.Domain.Models.Comment", b =>
                 {
-                    b.HasOne("SocialNet.Domain.Models.Post", null)
+                    b.HasOne("SocialNet.Domain.Models.Post", "Post")
                         .WithMany("Comments")
-                        .HasForeignKey("PostId1");
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Post");
                 });
 
             modelBuilder.Entity("SocialNet.Domain.Models.Post", b =>

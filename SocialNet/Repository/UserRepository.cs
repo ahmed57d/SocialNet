@@ -25,18 +25,28 @@ namespace SocialNet.Repository
 
         public void InsertUser(User user)
         {
-            context.Users?.Add(user);
+            if (user.Id == null)
+            {
+                user.Id = Guid.NewGuid().ToString(); 
+            }
+            context.Users.Add(user);
             context.SaveChanges();
         }
 
         public void UpdateUser(User user)
         {
             context.Users?.Update(user);
+            context.SaveChanges();
         }
 
-        public void DeleteUser(string Id)
+        public void DeleteUser(string id)
         {
-            context.Remove(Id);
+            var user = context.Users.Find(id); 
+            if (user != null)
+            {
+                context.Users.Remove(user); 
+                context.SaveChanges(); 
+            }
         }
         public void SaveChanges()
         {
