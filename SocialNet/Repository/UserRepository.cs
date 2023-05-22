@@ -34,9 +34,13 @@ namespace SocialNet.Repository
             context.Users?.Update(user);
         }
 
-        public void DeleteUser(Guid UserId)
+        public void DeleteUser(string Id)
         {
-            context.Remove(UserId);
+            context.Remove(Id);
+        }
+        public void SaveChanges()
+        {
+            context.SaveChanges();
         }
     }
 }

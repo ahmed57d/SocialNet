@@ -1,14 +1,13 @@
 ﻿using SocialNet.Domain.Models;
 
-namespace SocialNet.Repository.IRepository
+namespace SocialNet.Service.IService
 {
-    public interface IUserRepository
+    public interface IUserService
     {
         Task<User> GetUser(string Id);
         IEnumerable<User> GetUsers();
         void InsertUser(User user);
         void UpdateUser(User user);
         void DeleteUser(string Id);
-        void SaveChanges();
     }
 }
