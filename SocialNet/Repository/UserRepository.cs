@@ -15,12 +15,12 @@ namespace SocialNet.Repository
         }
         public async Task<User> GetUser(string Id)
         {
-            return await context.Users.SingleOrDefaultAsync(s => s.Id == Id);
+            return await context.Users.SingleOrDefaultAsync(s => s.Id == Id)?? new User();
         }
 
-        public  IEnumerable<User> GetUsers()
+        public async Task<IEnumerable<User>> GetUsers()
         {
-            return  (IEnumerable<User>)context.Users!.AsAsyncEnumerable();
+            return await context.Users.ToListAsync();
         }
 
         public void InsertUser(User user)

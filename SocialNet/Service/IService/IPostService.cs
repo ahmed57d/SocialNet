@@ -6,5 +6,8 @@ namespace SocialNet.Service.IService
     {
         Task<Post> GetUserPosts(string Id);
         IEnumerable<Post> GetAllUsersPosts();
+        void AddPost(Post post);
+        void UpdatePost(Post post);
+        void DeletePost(Post post);
     }
 }

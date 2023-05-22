@@ -6,6 +6,9 @@ namespace SocialNet.Repository.IRepository
     {
         Task<Post> GetUserPosts(string Id);
         IEnumerable<Post> GetAllUsersPosts();
+        void AddPost(Post post);
+        void UpdatePost(Post post);
+        void DeletePost(Post post);
         void SaveChanges();
     }
 }

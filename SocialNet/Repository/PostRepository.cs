@@ -23,6 +23,25 @@ namespace SocialNet.Repository
             return (IEnumerable<Post>)context.Posts.AsAsyncEnumerable();
         }
 
+
+        public void AddPost(Post post)
+        {
+            context.Posts?.Add(post);
+            context.SaveChanges();
+        }
+
+        public void UpdatePost(Post post)
+        {
+            context.Posts?.Update(post);
+            context.SaveChanges();
+        }
+
+        public void DeletePost(Post post)
+        {
+            context.Posts?.Remove(post);
+            context.SaveChanges();
+        }  
+
         public void SaveChanges()
         {
             context.SaveChanges();

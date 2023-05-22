@@ -21,5 +21,17 @@ namespace SocialNet.Service
         {
             return postRepository.GetUserPosts(Id);
         }
+        public void AddPost(Post post)
+        {
+            postRepository.AddPost(post);
+        }
+        public void UpdatePost(Post post)
+        {
+            postRepository.UpdatePost(post);
+        }
+        public void DeletePost(Post post)
+        {
+            postRepository.DeletePost(post);
+        }
     }
 }

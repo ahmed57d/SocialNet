@@ -19,7 +19,7 @@ namespace SocialNet.Service
             return userRepository.GetUser(Id);
         }
 
-        public IEnumerable<User> GetUsers()
+        public Task<IEnumerable<User>> GetUsers()
         {
             return userRepository.GetUsers();
         }
