@@ -14,13 +14,17 @@ namespace SocialNet.Repository
             this.context = context;
         }
 
-        public async Task<Post> GetUserPosts(string Id)
+        public async Task<Post> GetUserPosts(string userId)
         {
-            return await context.Posts.SingleOrDefaultAsync(s =>s.UserId == Id);
+            return await context.Posts
+                .Include(p => p.Comments) 
+                .SingleOrDefaultAsync(p => p.UserId == userId);
         }
         public IEnumerable<Post> GetAllUsersPosts()
         {
-            return (IEnumerable<Post>)context.Posts.AsAsyncEnumerable();
+            return context.Posts
+                .Include(p => p.Comments) 
+                .ToList();
         }
 
 

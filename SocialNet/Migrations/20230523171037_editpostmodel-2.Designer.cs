@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SocialNet.Repository.Contexts;
 
@@ -11,9 +12,10 @@ using SocialNet.Repository.Contexts;
 namespace SocialNet.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230523171037_editpostmodel-2")]
+    partial class editpostmodel2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -404,11 +406,13 @@ namespace SocialNet.Migrations
 
             modelBuilder.Entity("SocialNet.Domain.Models.Comment", b =>
                 {
-                    b.HasOne("SocialNet.Domain.Models.Post", null)
+                    b.HasOne("SocialNet.Domain.Models.Post", "Post")
                         .WithMany("Comments")
                         .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Post");
                 });
 
             modelBuilder.Entity("SocialNet.Domain.Models.Post", b =>

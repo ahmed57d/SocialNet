@@ -46,7 +46,7 @@ namespace SocialNet.Controllers
                 return BadRequest();
 
             userService.UpdateUser(user);
-            return NoContent();
+            return Ok();
         }
 
         [HttpDelete("{Id}")]

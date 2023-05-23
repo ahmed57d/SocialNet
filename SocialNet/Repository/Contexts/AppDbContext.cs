@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SocialNet.Domain.Models;
+using System.Reflection.Emit;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace SocialNet.Repository.Contexts
@@ -12,6 +13,7 @@ namespace SocialNet.Repository.Contexts
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            
             base.OnModelCreating(builder);
         }
         public DbSet<User>? Users { get; set; }

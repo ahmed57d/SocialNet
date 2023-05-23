@@ -40,12 +40,14 @@ namespace SocialNet.Controllers
         public IActionResult UpdatePost([FromBody] Post post)
         {
             postService.UpdatePost(post);
-            return NoContent();
+            return Ok();
         }
         [HttpDelete]
-        public void DeletePost(Post post)
+        public IActionResult DeletePost(Post post)
         {
             postService.DeletePost(post);
+            return NoContent();
+
         }
     }
 }
