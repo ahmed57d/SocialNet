@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SocialNet.Domain.Models;
 using SocialNet.Service.IService;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SocialNet.Controllers
 {
@@ -16,6 +17,7 @@ namespace SocialNet.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult GetAllUsersPosts()
         {
             var posts = postService.GetAllUsersPosts();
@@ -23,6 +25,7 @@ namespace SocialNet.Controllers
         }
 
         [HttpGet("{Id}", Name = "PostId")]
+        [Authorize]
         public IActionResult GetUserPosts(string Id)
         {
             var post = postService.GetUserPosts(Id);
@@ -30,6 +33,7 @@ namespace SocialNet.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult AddPost([FromBody] Post post)
         {
             postService.AddPost(post);
@@ -37,17 +41,19 @@ namespace SocialNet.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         public IActionResult UpdatePost([FromBody] Post post)
         {
             postService.UpdatePost(post);
             return Ok();
         }
+
         [HttpDelete]
+        [Authorize]
         public IActionResult DeletePost(Post post)
         {
             postService.DeletePost(post);
             return NoContent();
-
         }
     }
 }

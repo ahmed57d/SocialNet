@@ -2,6 +2,7 @@
 using SocialNet.Domain.Models;
 using SocialNet.Service.IService;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SocialNet.Controllers
 {
@@ -17,6 +18,7 @@ namespace SocialNet.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetUsers()
         {
             var users = await userService.GetUsers();
@@ -24,6 +26,7 @@ namespace SocialNet.Controllers
         }
 
         [HttpGet("{Id}", Name = "UserId")]
+        [Authorize]
         public async Task<IActionResult> GetUser(string Id)
         {
             var user = await userService.GetUser(Id);
@@ -33,13 +36,15 @@ namespace SocialNet.Controllers
         }
 
         [HttpPost]
-        public IActionResult InsertUser( User user)
+        [Authorize]
+        public IActionResult InsertUser(User user)
         {
             userService.InsertUser(user);
             return CreatedAtRoute("UserId", new { Id = user.Id }, user);
         }
 
         [HttpPut("{Id}")]
+        [Authorize]
         public IActionResult UpdateUser(string Id, [FromBody] User user)
         {
             if (Id != user.Id)
@@ -50,6 +55,7 @@ namespace SocialNet.Controllers
         }
 
         [HttpDelete("{Id}")]
+        [Authorize]
         public IActionResult DeleteUser(string Id)
         {
             userService.DeleteUser(Id);
