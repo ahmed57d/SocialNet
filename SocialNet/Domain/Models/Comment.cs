@@ -11,6 +11,6 @@ namespace SocialNet.Domain.Models
         // Foreign key
         public string PostId { get; set; }
         // Navigation property
-        public Post Post { get; set; }
+        public string UserId { get; set; }
     }
 }
